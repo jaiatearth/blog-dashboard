@@ -1,30 +1,34 @@
 import { notFound } from "next/navigation";
+
 interface Post {
-    id: number;
-    title: string;
-    body: string;
-  }
-  
-  interface PostPageProps {
-    params: { id: string };
-  }
-  
-  async function getPost(id: string): Promise<Post | null> {
-    const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`);
+  id: number;
+  title: string;
+  body: string;
+}
+
+interface PostPageProps {
+  params: { id: string };
+}
+
+async function getPost(id: string): Promise<Post | null> {
+  try {
+    const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, { cache: "no-store" });
     if (!res.ok) return null;
     return res.json();
+  } catch (error) {
+    console.error("Failed to fetch post:", error);
+    return null;
   }
-  
-  export default async function PostDetail({ params }: PostPageProps) {
-    const post = await getPost(params.id);
-  
-    if (!post) return notFound();
-  
-    return (
-      <main style={{ padding: "2rem" }}>
-        <h1>{post.title}</h1>
-        <p>{post.body}</p>
-      </main>
-    );
-  }
-  
+}
+
+export default async function PostDetail({ params }: PostPageProps) {
+  const post = await getPost(params.id);
+  if (!post) return notFound();
+
+  return (
+    <main style={{ padding: "2rem" }}>
+      <h1>{post.title}</h1>
+      <p>{post.body}</p>
+    </main>
+  );
+}
