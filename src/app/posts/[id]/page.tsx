@@ -11,17 +11,16 @@ interface PostPageProps {
 }
 
 async function getPost(id: string): Promise<Post | null> {
-  try {
-    const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, { cache: "no-store" });
-    if (!res.ok) return null;
-    return res.json();
-  } catch (error) {
-    console.error("Failed to fetch post:", error);
-    return null;
-  }
+  const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, {
+    cache: "no-store",
+  });
+  if (!res.ok) return null;
+  return res.json();
 }
 
 export default async function PostDetail({ params }: PostPageProps) {
+  if (!params?.id) return notFound();
+  
   const post = await getPost(params.id);
   if (!post) return notFound();
 
