@@ -12,16 +12,16 @@ interface Post {
 }
 
 export const AllPosts = () => {
-    const { data, error, isLoading } = useGetPostsQuery();
+    const { data: posts, error, isLoading } = useGetPostsQuery();
 
     if (isLoading) return <CircularProgress />;
     if (error) return <p>Error loading posts</p>;
 
-    const posts: Post[] = Array.isArray(data) ? data : [];
+    const safePosts: Post[] = Array.isArray(posts) ? posts : [];
 
     return (
         <Grid container spacing={2}>
-            {posts.map((post) => (
+            {safePosts.map((post) => (
                 <Grid item key={post.id} xs={12} sm={6} md={4}>
                     <PostGrid post={post} />
                 </Grid>

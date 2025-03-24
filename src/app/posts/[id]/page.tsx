@@ -7,7 +7,7 @@ interface Post {
 }
 
 interface PostPageProps {
-  params: Promise<{ id: string }>;
+  params: { id: string };
 }
 
 async function getPost(id: string): Promise<Post | null> {
@@ -17,10 +17,9 @@ async function getPost(id: string): Promise<Post | null> {
 }
 
 export default async function PostDetail({ params }: PostPageProps) {
-  const resolvedParams = await params;
-  if (!resolvedParams?.id) return notFound();
+  if (!params?.id) return notFound();
 
-  const post = await getPost(resolvedParams.id);
+  const post = await getPost(params.id);
   if (!post) return notFound();
 
   return (
