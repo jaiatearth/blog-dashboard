@@ -7,21 +7,20 @@ interface Post {
 }
 
 interface PostPageProps {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 
 async function getPost(id: string): Promise<Post | null> {
-  const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, {
-    cache: "no-store",
-  });
+  const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`);
   if (!res.ok) return null;
   return res.json();
 }
 
 export default async function PostDetail({ params }: PostPageProps) {
-  if (!params?.id) return notFound();
-  
-  const post = await getPost(params.id);
+  const resolvedParams = await params;
+  if (!resolvedParams?.id) return notFound();
+
+  const post = await getPost(resolvedParams.id);
   if (!post) return notFound();
 
   return (
