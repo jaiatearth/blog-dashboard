@@ -1,19 +1,22 @@
 "use client";
-import { Inter } from "next/font/google";
+
 import { Provider } from "react-redux";
 import { store } from "@/redux/store";
+import dynamic from "next/dynamic";
 import { CssBaseline } from "@mui/material";
 import { ReactNode } from "react";
 
-const inter = Inter({ subsets: ["latin"] });
+const ThemeRegistry = dynamic(() => import("./ThemeRegistry"), { ssr: false });
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body>
         <Provider store={store}>
-          <CssBaseline />
-          {children}
+          <ThemeRegistry>
+            <CssBaseline />
+            {children}
+          </ThemeRegistry>
         </Provider>
       </body>
     </html>

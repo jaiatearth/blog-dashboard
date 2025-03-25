@@ -2,7 +2,7 @@
 
 import { useGetPostsQuery } from "@/redux/apiDetail";
 import { PostGrid } from "./PostGrid";
-import { CircularProgress, Grid } from "@mui/material";
+import { LinearProgress, Grid, Box } from "@mui/material";
 
 interface Post {
   id: number;
@@ -12,20 +12,32 @@ interface Post {
 }
 
 export const AllPosts = () => {
-    const { data: posts, error, isLoading } = useGetPostsQuery({});
+  const { data: posts, error, isLoading } = useGetPostsQuery({});
 
-    if (isLoading) return <CircularProgress />;
-    if (error) return <p>Error loading posts</p>;
-
-    const safePosts: Post[] = Array.isArray(posts) ? posts : [];
-
+  if (isLoading)
     return (
-        <Grid container spacing={2}>
-            {safePosts.map((post) => (
-                <Grid item key={post.id} xs={12} sm={6} md={4}>
-                    <PostGrid post={post} />
-                </Grid>
-            ))}
-        </Grid>
+      <Box
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        height="100vh"
+        width="100%"
+        flexDirection="column"
+      >
+        <LinearProgress sx={{ width: "50%" }} />
+      </Box>
     );
+  if (error) return <p>Error loading posts</p>;
+
+  const safePosts: Post[] = Array.isArray(posts) ? posts : [];
+
+  return (
+    <Grid container spacing={2}>
+      {safePosts.map((post) => (
+        <Grid item key={post.id} xs={12} sm={6} md={4}>
+          <PostGrid post={post} />
+        </Grid>
+      ))}
+    </Grid>
+  );
 };

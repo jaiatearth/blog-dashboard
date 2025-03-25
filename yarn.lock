@@ -457,6 +457,13 @@
   resolved "https://registry.yarnpkg.com/@mui/core-downloads-tracker/-/core-downloads-tracker-6.4.8.tgz#ffabbdce0e7b341e9c2906bb06a00b34c9d15e05"
   integrity sha512-vjP4+A1ybyCRhDZC7r5EPWu/gLseFZxaGyPdDl94vzVvk6Yj6gahdaqcjbhkaCrJjdZj90m3VioltWPAnWF/zw==
 
+"@mui/icons-material@^6.4.8":
+  version "6.4.8"
+  resolved "https://registry.yarnpkg.com/@mui/icons-material/-/icons-material-6.4.8.tgz#3e8f52c19badd2573fce40eb3f47685ecf20dbd0"
+  integrity sha512-LKGWiLWRyoOw3dWxZQ+lV//mK+4DVTTAiLd2ljmJdD6XV0rDB8JFKjRD9nyn9cJAU5XgWnii7ZR3c93ttUnMKg==
+  dependencies:
+    "@babel/runtime" "^7.26.0"
+
 "@mui/material@^6.4.8":
   version "6.4.8"
   resolved "https://registry.yarnpkg.com/@mui/material/-/material-6.4.8.tgz#3da961a35b778246832db22fab98c49adbccda77"
@@ -2461,6 +2468,11 @@ prelude-ls@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/prelude-ls/-/prelude-ls-1.2.1.tgz#debc6489d7a6e6b0e7611888cec880337d316396"
   integrity sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==
+
+prettier@^3.5.3:
+  version "3.5.3"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-3.5.3.tgz#4fc2ce0d657e7a02e602549f053b239cb7dfe1b5"
+  integrity sha512-QQtaxnoDJeAkDvDKWCLiwIXkTgRhwYDEQCghU9Z6q03iyek/rxRh/2lC3HB7P8sWT2xC/y5JDctPLBIGzHKbhw==
 
 prop-types@^15.6.2, prop-types@^15.8.1:
   version "15.8.1"
