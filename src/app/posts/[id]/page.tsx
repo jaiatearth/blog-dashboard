@@ -1,31 +1,14 @@
 import { notFound } from "next/navigation";
+import PostDetail from "@/app/components/PostDetail";
 
-interface Post {
-  id: number;
-  title: string;
-  body: string;
-}
+export default async function PostDetailPage({
+  params,
+}: {
+  params: Promise<{ id?: string }>;
+}) {
+  const { id } = await params;
 
-interface PostPageProps {
-  params: { id: string };
-}
+  if (!id) return notFound();
 
-async function getPost(id: string): Promise<Post | null> {
-  const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`);
-  if (!res.ok) return null;
-  return res.json();
-}
-
-export default async function PostDetail({ params }: PostPageProps) {
-  if (!params?.id) return notFound();
-
-  const post = await getPost(params.id);
-  if (!post) return notFound();
-
-  return (
-    <main style={{ padding: "2rem" }}>
-      <h1>{post.title}</h1>
-      <p>{post.body}</p>
-    </main>
-  );
+  return <PostDetail id={id} />;
 }

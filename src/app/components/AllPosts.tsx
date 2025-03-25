@@ -12,7 +12,7 @@ interface Post {
 }
 
 export const AllPosts = () => {
-    const { data: posts, error, isLoading } = useGetPostsQuery();
+    const { data: posts, error, isLoading } = useGetPostsQuery({});
 
     if (isLoading) return <CircularProgress />;
     if (error) return <p>Error loading posts</p>;
