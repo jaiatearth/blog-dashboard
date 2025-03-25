@@ -6,5 +6,5 @@ export default async function PostDetailPage({ params }: { params: Promise<{ id?
 
   if (!id) return notFound();
 
-  return <PostDetail id={id} />;
+  return <PostDetail />;
 }

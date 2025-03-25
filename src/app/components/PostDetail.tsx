@@ -1,45 +1,52 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useGetPostByIdQuery } from "@/redux/apiDetail";
+import { useParams, useRouter } from "next/navigation";
+import { Box, Typography, CircularProgress, Container, Paper, IconButton } from "@mui/material";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import Header from "@/app/components/Header";
 
-interface Post {
-  id: number;
-  title: string;
-  body: string;
-}
+export default function PostDetail() {
+  const { id } = useParams();
+  const { data: post, error, isLoading } = useGetPostByIdQuery(id);
+  const router = useRouter();
 
-export default function PostDetail({ id }: { id: string }) {
-  const [post, setPost] = useState<Post | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<Error | null>(null);
+  if (isLoading)
+    return (
+      <Box display="flex" justifyContent="center" alignItems="center" height="100vh">
+        <CircularProgress />
+      </Box>
+    );
 
-  useEffect(() => {
-    async function fetchPost() {
-      try {
-        const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`);
-        if (!res.ok) throw new Error("Failed to fetch post");
-        const data = await res.json();
-        setPost(data);
-      } catch (err) {
-        if (err instanceof Error) {
-          setError(err);
-        }
-      } finally {
-        setLoading(false);
-      }
-    }
-    fetchPost();
-  }, [id]);
-
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
-
-  if (!post) return <p>Post not found</p>;
+  if (error) return <Typography color="error">Error loading post</Typography>;
+  if (!post) return <Typography>No post found.</Typography>;
 
   return (
-    <main style={{ padding: "2rem" }}>
-      <h1>{post.title}</h1>
-      <p>{post.body}</p>
-    </main>
+    <>
+      <Header />
+      <Box sx={{ display: "flex", alignItems: "center", mb: 2, pl: 3 }}>
+        <IconButton onClick={() => router.back()} sx={{ mr: 1, color: "primary.main" }}>
+          <ArrowBackIcon />
+        </IconButton>
+        <Typography variant="h6" sx={{ fontWeight: "600" }}>
+          Back
+        </Typography>
+      </Box>
+      <Container maxWidth="md" sx={{ mt: 4, pt: 5 }}>
+        <Paper elevation={3} sx={{ padding: "2rem", borderRadius: "12px" }}>
+          <Typography variant="h3" gutterBottom sx={{ color: "primary.main", fontWeight: "700" }}>
+            {post.title}
+          </Typography>
+
+          <Typography variant="subtitle1" color="textSecondary" sx={{ mb: 2 }}>
+            <b>Author:</b> User {post.userId || "Unknown"}
+          </Typography>
+
+          <Typography variant="body1" sx={{ lineHeight: 1.8, color: "black" }}>
+            {post.body}
+          </Typography>
+        </Paper>
+      </Container>
+    </>
   );
 }

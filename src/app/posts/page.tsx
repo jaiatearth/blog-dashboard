@@ -12,9 +12,7 @@ export default function PostsPage() {
           width: "100%",
           backgroundColor: "white",
           zIndex: 1000,
-          borderBottom: "5px solid",
-          borderColor: "secondary.main",
-          pt: 3,
+          pt: 10,
           pl: 6,
           pb: 2,
         }}
@@ -33,6 +31,5 @@ export default function PostsPage() {
         <AllPosts />
       </Box>
     </main>
-
   );
 }

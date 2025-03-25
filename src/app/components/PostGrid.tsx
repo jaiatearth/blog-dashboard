@@ -7,31 +7,45 @@ import { useTheme } from "@mui/material/styles";
 export const PostGrid = ({
   post,
 }: {
-  post: { id: number; title: string; author: string; body: string; userId: number; };
+  post: { id: number; title: string; author: string; body: string; userId: number };
 }) => {
   const router = useRouter();
   const theme = useTheme();
+  const getRandomColor = () => {
+    return `hsl(${Math.floor(Math.random() * 360)}, 75%, 90%)`;
+  };
 
   return (
     <Card
-      variant="outlined"
       sx={{
-        height: 200,
+        height: 250,
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
-        borderColor: "primary.main",
-        borderWidth: "0.5px",
-        transition: "all 0.3s ease-in-out",
+        boxShadow: "0px 2px 8px rgba(0, 0, 0, 0.1)",
+        transition: "all 0.3s ease-out",
+        cursor: "pointer",
+        borderRadius: "12px",
+        backgroundColor: getRandomColor(),
         "&:hover": {
-          borderWidth: "8px",
-          borderColor: "primary.main",
+          boxShadow: "0px 10px 20px rgba(0, 0, 0, 0.25)",
+          transform: "scale(1.03)",
+          backgroundColor: theme.palette.grey[50],
+          border: "5px solid ${theme.palette.secondary.main}",
         },
-        cursor: "pointer"
       }}
     >
-      <CardContent sx={{ flexGrow: 1, overflow: "hidden", pb: 1 , p: 3}}>
-        <Typography variant="h5" sx={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", color: "primary.main", fontWeight: "600" }}>
+      <CardContent sx={{ flexGrow: 1, overflow: "hidden", pb: 1, p: 3 }}>
+        <Typography
+          variant="h5"
+          sx={{
+            whiteSpace: "nowrap",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+            color: "primary.main",
+            fontWeight: "600",
+          }}
+        >
           {post.title}
         </Typography>
         <Typography
@@ -42,7 +56,8 @@ export const PostGrid = ({
             WebkitLineClamp: 3,
             overflow: "hidden",
             whiteSpace: "normal",
-            pb: 3
+            pb: 3,
+            pt: 2,
           }}
         >
           {post.body}
@@ -59,21 +74,28 @@ export const PostGrid = ({
           px: 2,
         }}
       >
-        <Typography variant="caption" color="text.secondary" sx={{ flexShrink: 0, fontSize: "1rem" }}>
+        <Typography
+          variant="caption"
+          color="text.secondary"
+          sx={{ flexShrink: 0, fontSize: "1rem" }}
+        >
           <b>Author:</b> {"User " + post.userId || "Unknown"}
         </Typography>
         <Button
-            sx={{
-              color: "secondary.main",
-              fontWeight: "600",
-              textTransform: "none",
-              px: 2,
-              "&:hover": { backgroundColor: "primary.dark", color: "white", border: "none" },
-              border: `0.5px solid ${theme.palette.secondary.main}`
-            }}
-            onClick={() => router.push(`/posts/${post.id}`)}
-          >
-            Read More
+          sx={{
+            color: "secondary.main",
+            fontWeight: "600",
+            textTransform: "none",
+            px: 2,
+            "&:hover": {
+              backgroundColor: "primary.dark",
+              color: "white",
+              boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.15)",
+            },
+          }}
+          onClick={() => router.push(`/posts/${post.id}`)}
+        >
+          Read More
         </Button>
       </CardContent>
     </Card>

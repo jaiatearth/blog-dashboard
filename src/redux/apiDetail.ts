@@ -10,7 +10,14 @@ export const blogApi = createApi({
     getPostById: builder.query({
       query: (id) => `/posts/${id}`,
     }),
+    addPost: builder.mutation({
+      query: (newPost) => ({
+        url: "/posts",
+        method: "POST",
+        body: newPost,
+      }),
+    }),
   }),
 });
 
-export const { useGetPostsQuery, useGetPostByIdQuery } = blogApi;
+export const { useGetPostsQuery, useGetPostByIdQuery, useAddPostMutation } = blogApi;

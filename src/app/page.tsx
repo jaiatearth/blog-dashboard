@@ -69,7 +69,7 @@ export default function Home() {
               letterSpacing: "2px",
               display: "flex",
               alignItems: "center",
-              gap: "8px", // Space between icon and text
+              gap: "8px",
             }}
             onClick={() => router.push("/write")}
           >

@@ -33,7 +33,7 @@ export const AllPosts = () => {
   const totalPosts: Post[] = Array.isArray(posts) ? posts : [];
 
   return (
-    <Box sx={{ p: 6 }}>
+    <Box sx={{ p: 4, pt: 1 }}>
       <Grid container spacing={3}>
         {totalPosts?.map((post) => (
           <Grid item key={post.id} xs={12} sm={6} md={4}>
