@@ -32,7 +32,7 @@ export default function PostDetail() {
           Back
         </Typography>
       </Box>
-      <Container maxWidth="md" sx={{ mt: 4, pt: 5 }}>
+      <Container maxWidth="md" sx={{ mt: 4, pt: 5, pb: 3 }}>
         <Paper elevation={3} sx={{ padding: "2rem", borderRadius: "12px" }}>
           <Typography variant="h3" gutterBottom sx={{ color: "primary.main", fontWeight: "700" }}>
             {post.title}
