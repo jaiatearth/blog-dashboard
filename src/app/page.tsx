@@ -103,6 +103,8 @@ export default function Home() {
           sx={{
             mt: 2,
             bgcolor: theme.palette.secondary.main,
+            letterSpacing: "2px",
+            fontWeight: "600",
             "&:hover": { bgcolor: theme.palette.primary.dark },
           }}
         >

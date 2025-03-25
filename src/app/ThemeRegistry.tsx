@@ -2,7 +2,10 @@
 
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
+import { Nunito } from "next/font/google";
 import { ReactNode } from "react";
+
+const nunito = Nunito({ subsets: ["latin"], weight: ["300", "400", "700"] });
 
 const theme = createTheme({
   palette: {
@@ -17,7 +20,7 @@ const theme = createTheme({
     },
   },
   typography: {
-    fontFamily: "Lora, serif",
+    fontFamily: nunito.style.fontFamily,
   },
 });
 

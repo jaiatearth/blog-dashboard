@@ -9,6 +9,7 @@ interface Post {
   title: string;
   author: string;
   body: string;
+  userId: number;
 }
 
 export const AllPosts = () => {
@@ -29,15 +30,17 @@ export const AllPosts = () => {
     );
   if (error) return <p>Error loading posts</p>;
 
-  const safePosts: Post[] = Array.isArray(posts) ? posts : [];
+  const totalPosts: Post[] = Array.isArray(posts) ? posts : [];
 
   return (
-    <Grid container spacing={2}>
-      {safePosts.map((post) => (
-        <Grid item key={post.id} xs={12} sm={6} md={4}>
-          <PostGrid post={post} />
-        </Grid>
-      ))}
-    </Grid>
+    <Box sx={{ p: 6 }}>
+      <Grid container spacing={3}>
+        {totalPosts?.map((post) => (
+          <Grid item key={post.id} xs={12} sm={6} md={4}>
+            <PostGrid post={post} />
+          </Grid>
+        ))}
+      </Grid>
+    </Box>
   );
 };
