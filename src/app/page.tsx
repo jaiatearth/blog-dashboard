@@ -64,7 +64,7 @@ export default function Home() {
             sx={{
               fontSize: "1rem",
               fontWeight: "600",
-              width: "200px",
+              width: "150px",
               textTransform: "none",
               letterSpacing: "2px",
               display: "flex",

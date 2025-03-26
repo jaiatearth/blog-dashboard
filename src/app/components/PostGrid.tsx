@@ -36,6 +36,7 @@ export const PostGrid = ({
       }}
     >
       <CardContent sx={{ flexGrow: 1, overflow: "hidden", pb: 1, p: 3 }}>
+
         <Typography
           variant="h5"
           sx={{
@@ -48,6 +49,7 @@ export const PostGrid = ({
         >
           {post.title}
         </Typography>
+
         <Typography
           variant="body2"
           sx={{
@@ -62,6 +64,7 @@ export const PostGrid = ({
         >
           {post.body}
         </Typography>
+
       </CardContent>
 
       <Divider />
@@ -74,6 +77,7 @@ export const PostGrid = ({
           px: 2,
         }}
       >
+
         <Typography
           variant="caption"
           color="text.secondary"
@@ -81,22 +85,27 @@ export const PostGrid = ({
         >
           <b>Author:</b> {"User " + post.userId || "Unknown"}
         </Typography>
+
         <Button
           sx={{
-            color: "secondary.main",
+            color: "white",
             fontWeight: "600",
             textTransform: "none",
-            px: 2,
             "&:hover": {
               backgroundColor: "primary.dark",
-              color: "white",
               boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.15)",
             },
+            fontSize: { xs: "10px", sm: "10px", md: "14px" },
+            padding: { xs: "1px" },
+            px: { xs: 1, sm: 1, md: 1 },
+            backgroundColor: "secondary.main",
+            borderRadius: "2"
           }}
           onClick={() => router.push(`/posts/${post.id}`)}
         >
           Read More
         </Button>
+
       </CardContent>
     </Card>
   );
