@@ -15,7 +15,7 @@ A blog dashboard built with Next.js, TypeScript, Material-UI, and RTK Query. It 
 
 ✅ Static Site Generation (SSG) for the blog list page (default behavior in Next.js App Router)
 
-✅ Dynamic routing
+✅ Dynamic routing for individual blog post
 
 ✅ Client-Side Rendering (CSR) with RTK Query for fetching individual blog posts dynamically 
 
@@ -23,7 +23,7 @@ A blog dashboard built with Next.js, TypeScript, Material-UI, and RTK Query. It 
 
 ✅ API calls managed using RTK Query 
  
-✅ Responsive design 
+✅ Responsive design with MUI
 
 
 ## Installation & Setup  
